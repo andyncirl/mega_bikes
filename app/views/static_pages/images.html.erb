@@ -1,0 +1,53 @@
+<h1>StaticPages#images</h1>
+<p>Find me in app/views/static_pages/images.html.erb</p>
+<script>
+    window.onload = init;
+
+    var car;
+    function init(){
+
+        car = $('.car').ThreeSixty({
+            totalFrames: 52, // Total no. of image you have for 360 slider
+            endFrame: 52, // end frame for the auto spin animation
+            currentFrame: 1, // This the start frame for auto spin
+            imgList: '.threesixty_images', // selector for image list
+            progress: '.spinner', // selector to show the loading progress
+            imagePath:'assets/car/', // path of the image assets
+            filePrefix: '', // file prefix if any
+            ext: '.png', // extention for the assets
+            height: 1000,
+            width: 447,
+            navigation: false
+        });
+
+        $('.custom_previous').bind('click', function(e) {
+            car.previous();
+        });
+
+        $('.custom_next').bind('click', function(e) {
+            car.next();
+        });
+
+        $('.custom_play').bind('click', function(e) {
+            car.play();
+        });
+
+        $('.custom_stop').bind('click', function(e) {
+            car.stop();
+        });
+
+    }
+</script>
+
+<div class="threesixty car">
+  <div class="spinner">
+    <span>0%</span>
+  </div>
+  <ol class="threesixty_images"></ol>
+</div>
+<div class="custom_nav_bar">
+  <button class="custom_previous btn"><i class="icon-backward"></i> Previous</button>
+  <button class="custom_play btn">Play <i class="icon-play"></i></button>
+  <button class="custom_stop btn">Stop <i class="icon-stop"></i></button>
+  <button class="custom_next btn">Next <i class="icon-forward"></i></button>
+</div>

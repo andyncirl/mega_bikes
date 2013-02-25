@@ -1,0 +1,23 @@
+
+<% if notice %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+<%= render @cart %>
+<div class="cart_title">Your Cart</div>
+<table>
+  <%= render(@cart.line_items) %>
+  <% @cart.line_items.each do |item| %>
+      <tr>
+        <li><%= item.quantity %> &times; <%= item.product.make %></li>
+        Total Price: <%= number_to_currency( @cart.total_price, :unit => '&euro;') %><br/>
+
+      </tr>
+  <% end %>
+
+  <tr class="total_line">
+
+
+  </tr>
+</table>
+<%= button_to 'Empty cart', @cart, method: :delete,
+              confirm: 'Are you sure?' %>

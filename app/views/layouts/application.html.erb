@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <title>MEGABIKES</title>
+  <%= stylesheet_link_tag    "MEGABIKES", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+ <body class='<%= controller.controller_name %>'>
+ <div id="banner">
+   <br>
+     <%= @page_title || "MEGABIKES" %>
+         <br>
+   <%= link_to "Home", :controller => "welcome", :action => "home" %> |
+
+    <%= link_to "Product Catalogue", products_path %> |
+   <%= link_to "Locations",  locations_path %> |
+   <%= link_to "Leave Site", :controller => "welcome",:action => "thank_you" %> |
+   <%= link_to "Register", :controller => "welcome", :action => "register" %> |
+
+          </br>
+    </div>
+
+
+
+
+  <div id="columns">
+    <div id="side">
+
+         <div id="cart">
+            <% if @cart %>
+           <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+               <%= render @cart %>
+           <% end %>
+           <% end %>
+           <%= link_to "Your Cart", :controller => "carts",
+                       :action => "your_cart" %> |
+         </div>
+    <ul>
+    <li><a href="http://www....">Home</a></li>
+    <li><a href="http://www..../faq">Questions</a></li>
+    <li><a href="http://www..../news">News</a></li>
+    <li><a href="http://www..../contact">Contact</a></li>
+    </ul>
+    </div>
+
+
+    <div id="main">
+    <%= yield %>
+    </div>
+    <div id="footer">
+      &copy; MEGABIKES  COPYRIGHT 2012
+    </div>
+    </div>
+ </body>
+ </html>
+
